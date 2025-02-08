@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cmath>
+#include <stdexcept>
+using namespace std;
+
+double calculateA(double x, double y) {
+    if (x == 0) {
+        throw invalid_argument("ln|x| is undefined for x = 0");
+    }
+
+    double numerator = x * x - x * y;
+    double logValue = log(abs(x)); // ln(|x|)
+    double sinValue = sin(logValue); // sin(ln(|x|))
+    double denominator = 0.7 * sinValue;
+
+    if (denominator == 0) {
+        throw runtime_error("Division by zero error");
+    }
+
+    double z = numerator / denominator;
+
+    // Вывод промежуточных значений для отладки
+    //cout << "Числитель: " << numerator << endl;
+    //cout << "Значение ln(|x|): " << logValue << endl;
+    //cout << "Значение sin(ln(|x|)): " << sinValue << endl;
+   // cout << "Знаменатель: " << denominator << endl;
+
+    return z;
+}
+
+
+int main() {
+    setlocale(LC_ALL, "RUS");
+    cout << "Вычисляем по формуле, где" << endl;
+    cout << "x = 45.892" << endl;
+    cout << "y = 0.601" << endl;
+
+    double x = 45.892;
+    double y = 0.601;
+
+    try {
+        double z = calculateA(x, y);
+        cout << "Результат расчета a = " << z << endl;
+
+        int l = int(z);
+        cout << "отбрасываем дробную часть l = " << l << endl;
+
+        int m = ceil(z);
+        cout << "округление вверх m = " << m << endl;
+
+        int n = floor(z);
+        cout << "округление вниз n = " << n << endl;
+    } catch (const exception &e) {
+        cerr << "Ошибка: " << e.what() << endl;
+    }
+
+    return 0;
+}
