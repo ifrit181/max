@@ -23,7 +23,7 @@ double calculateA(double x, double y) {
     //cout << "Числитель: " << numerator << endl;
     //cout << "Значение ln(|x|): " << logValue << endl;
     //cout << "Значение sin(ln(|x|)): " << sinValue << endl;
-   // cout << "Знаменатель: " << denominator << endl;
+    //cout << "Знаменатель: " << denominator << endl;
 
     return z;
 }
